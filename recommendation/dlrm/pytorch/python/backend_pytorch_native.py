@@ -122,5 +122,5 @@ class BackendPytorchNative(backend.Backend):
                 else batch_lS_o.to(self.device)
 
         with torch.no_grad():
-             output = self.model(dense_x=batch_dense_X, lS_o=batch_lS_o, lS_i=batch_lS_i)
+            output = self.model(dense_x=batch_dense_X, lS_o=batch_lS_o, lS_i=batch_lS_i)
         return output

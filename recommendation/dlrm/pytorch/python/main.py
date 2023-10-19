@@ -23,6 +23,8 @@ import numpy as np
 import dataset
 import criteo
 
+from dlrm_s_pytorch import write_batches
+
 # add dlrm code path
 try:
     dlrm_dir_path = os.environ['DLRM_DIR']
@@ -522,6 +524,8 @@ def main():
         output_dir = os.path.abspath(args.output)
         os.makedirs(output_dir, exist_ok=True)
         os.chdir(output_dir)
+
+    write_batches(args.max_batchsize)
 
     #
     # make one pass over the dataset to validate accuracy
