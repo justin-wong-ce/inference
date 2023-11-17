@@ -23,7 +23,7 @@ import numpy as np
 import dataset
 import criteo
 
-from dlrm_s_pytorch import write_batches
+from dlrm_dpu_pytorch import write_batches
 
 # add dlrm code path
 try:
@@ -474,6 +474,7 @@ def add_results(final_results, name, result_dict, result_list, took, show_accura
 
 
 def main():
+    print("PIM - DPU IMPL")
     global last_timeing
     args = get_args()
 
@@ -484,6 +485,9 @@ def main():
 
     # dataset to use
     wanted_dataset, pre_proc, post_proc, kwargs = SUPPORTED_DATASETS[args.dataset]
+
+    # PIM - write #batches
+    write_batches(args.max_batchsize)
 
     # --count-samples can be used to limit the number of samples used for testing
     ds = wanted_dataset(data_path=args.dataset_path,
@@ -524,8 +528,6 @@ def main():
         output_dir = os.path.abspath(args.output)
         os.makedirs(output_dir, exist_ok=True)
         os.chdir(output_dir)
-
-    write_batches(args.max_batchsize)
 
     #
     # make one pass over the dataset to validate accuracy

@@ -4,7 +4,7 @@ pytoch native backend for dlrm
 # pylint: disable=unused-argument,missing-docstring
 import torch  # currently supports pytorch1.0
 import backend
-from dlrm_s_pytorch import DLRM_Net
+from dlrm_dpu_pytorch import DLRM_Net
 import numpy as np
 
 class BackendPytorchNative(backend.Backend):
@@ -26,7 +26,7 @@ class BackendPytorchNative(backend.Backend):
         if self.use_gpu:
             print("Using {} GPU(s)...".format(ngpus))
         else:
-            print("Using CPU...")
+            print("Using DPU...")
 
     def version(self):
         return torch.__version__
